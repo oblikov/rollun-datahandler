@@ -20,11 +20,11 @@ $aggregator = new ConfigAggregator([
     new PhpFileProvider(realpath(__DIR__) . "/autoload/{{,*.}global,{,*.}local}.php"),
 
     // Load application config according to environment:
-    //   - `dev.global.php`,   `test.global.php`,   `prod.global.php`
-    //   - `*.dev.global.php`, `*.test.global.php`, `*.prod.global.php`
-    //   - `dev.local.php`,    `test.local.php`,     `prod.local.php`
-    //   - `*.dev.local.php`,  `*.test.local.php`,  `*.prod.local.php`
-    new PhpFileProvider(realpath(__DIR__) . "/autoload/{{,*.}{$appEnv}.global,{,*.}{$appEnv}.local}.php"),
+    //   - `global.dev.php`,   `global.test.php`,   `prod.global.prod.php`
+    //   - `*.global.dev.php`, `*.global.test.php`, `*.prod.global.prod.php`
+    //   - `local.dev.php`,    `local.test.php`,     `prod.local.prod.php`
+    //   - `*.local.dev.php`,  `*.local.test.php`,  `*.prod.local.prod.php`
+    new PhpFileProvider(realpath(__DIR__) . "/autoload/{{,*.}global.{$appEnv},{,*.}local.{$appEnv}}.php"),
 ]);
 
 return $aggregator->getMergedConfig();
